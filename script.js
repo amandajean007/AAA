@@ -1,6 +1,18 @@
+//site listener 
+$(document).ready(funciton () {
+    
+    const userChoices = document.getElementById("userChoice");
+    const searchEl = document.querySelectorAll(".btn");
+
+
+
+
+})
+
 //pull classes from html 
 
-//
+// 
+
 // Function to go and auto fill when users collect 
 // $(function () {
 //     //put array to run through- pulldown/autofill
@@ -17,3 +29,4 @@
     //keep choices and search api for the food receipes 
 
 
+// only one recipe- if don't like it, run through function again
