@@ -1,1 +1,5 @@
-/* this is out css
+.hero-banner {
+    background-image: url(./hero-banners.jpg);
+    background-size: cover;
+    padding: 15%;
+}
