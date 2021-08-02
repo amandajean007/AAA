@@ -16,10 +16,10 @@ header {
     border-width: 2px;
     text-align: center;
     padding: 20px;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
 }
 
 button {
