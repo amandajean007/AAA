@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipies for non-disasters</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <nav></nav>
@@ -21,17 +21,18 @@
         <h2>Add food to your fridge!</h2>
         <form>
             <input type="text"  id="food-list" id="userChoice" name="lname" placeholder="Chicken..."><br><br>
-            <button class="glow-on-hover btn" id="addBtn">Add</button>
+            <input type="submit" value="Add" class="glow-on-hover btn" id="addBtn">
         </form>
         <!-- where selected items will go -->
-        <div id="userFridge"></div>
+        <ul id="userFridge"></ul>
+        <button class="glow-on-hover btn" id="searchBtn">Search</button>
     </div>
 </div>
-    <div class="recipes" id="recipe-area">Where recipe will go when uploaded</div>
+    <div class="recipes" id="recipe-area"></div>
     <footer>Thanks For Using Our Site! </footer>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <!-- Apply jQuery UI <script> tag here -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="script.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

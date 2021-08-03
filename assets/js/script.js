@@ -1,27 +1,52 @@
 //site listener 
 $(document).ready(function () {
-    let usesrChoice = []; //user choice empty array to be put into 
+    let usersChoice = []; //user choice empty array to be put into 
     //pulls from html
     //notice the very slight difference of the (s) 
-    const userChoices = document.getElementById("userChoice");
+    const userChoices = document.getElementById("food-list");
     const searchEl = document.querySelectorAll(".btn");
     const recipeEl = document.getElementById("recipe-area");
+    let userListFood = document.getElementById("userFridge");
 
+//creates list items 
+    var addElement = function (food) {
+      // makes list to then be appended to empty div in index.html
+      var listEl = $('<li>');
+      //appending part
+      listEl.appendTo(userListFood);
+    
+  //on click takes food list to go onto DOM 
+      let foodPicked = function (e) {
+     e.preventDefault();
+    
+      var foodChoice = userChoices.val();
+    
+      if (!foodChoice) {
+        console.log('You need to fill out the form!');
+        return;
+      }
+    
+      addElement(foodChoice, food);
+    
+      userChoices.val('');
+    $("#addBtn").on('submit', addElement);
+}};
+ 
+    });
 //Function to go and auto fill/drop down  when users collect 
-$(function () {
+$(function foodList () {
 
     //wonder if we can't use the API for the drop down and could completely ignore this?? 
-    var autoFillList = ['apple', 'avocado', 'apricots', 'lemons', 'pears', 'banana', 'melon', 'fruits', 'baby spinach', 'mixed greens', 'broccoli',
+    const autoFillList = ['apple', 'avocado', 'apricots', 'lemons', 'pears', 'banana', 'melon', 'fruits', 'baby spinach', 'mixed greens', 'broccoli',
     'cauliflower', 'carrots', 'herbs', 'potatoes','onions', 'garlic', 'peppers', 'roots', 'salmon', 'cod', 'shrimp', 'tortillas', 'bread', 
     'pitas', 'bacon', 'sausage', 'beef', 'pork', 'chicken', 'ham', 'turkey', 'canned tomatos', 'black beans', 'pinto beans', 'milk', 'butter']; 
-    //autocomplete is a completed widget that we just need to call 
-    //taking given skill and pulling it 
-    
+
     $('#food-list').autocomplete({
       source: autoFillList
     }) 
   }
   //function here to save user choices to then run through next function 
+
   );
 
 
@@ -46,8 +71,6 @@ var APIsite = ''
 // });
 
 }
-})
-
 
 //take options from autofill to run through the apis 
     //keep choices and search api for the food receipes 
