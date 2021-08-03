@@ -20,13 +20,18 @@
     <div class="col-6 main-container">
         <h2>Add food to your fridge!</h2>
         <form>
-            <input type="text" id="userChoice" name="lname" placeholder="Chicken"><br><br>
-            <button class="glow-on-hover btn">Search</button>
+            <input type="text"  id="food-list" id="userChoice" name="lname" placeholder="Chicken..."><br><br>
+            <button class="glow-on-hover btn" id="addBtn">Add</button>
         </form>
+        <!-- where selected items will go -->
+        <div id="userFridge"></div>
     </div>
 </div>
     <div class="recipes" id="recipe-area">Where recipe will go when uploaded</div>
     <footer>Thanks For Using Our Site! </footer>
 </body>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- Apply jQuery UI <script> tag here -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="script.js"></script>
 </html>
