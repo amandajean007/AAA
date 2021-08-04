@@ -1,9 +1,9 @@
-var usersChoice = []; //user choice empty array to be put into 
 const searchEl = document.querySelector("#searchBtn");
 var recipeEl = document.querySelector("#recipe-area");
 var foodInput = document.querySelector("#food-list");
 var formEl = document.querySelector("#food-form");
 var fridge = document.querySelector("#userFridge");
+var allergies = document.querySelector("#allergies");
 var items = [];
 
 // Will pull the food items from the fridge
@@ -74,3 +74,42 @@ fridge.addEventListener("click", function(event) {
 });
 
 init();
+
+
+
+// start API 
+//add event listen - on search btn 
+searchEl.addEventListener("click", function() {
+var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + fridge + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98'
+//  + '&health=' + allergies;
+
+fetch(foodAPI) 
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data){
+    console.log(data);
+    for (let index = 0; index < array.length; index++) {
+      const element = array[index];
+      
+    }
+    checking();
+    var recipe = document.createElement('li'); 
+    recipe.textContent = data.hits[recipe];
+    recipeEl.appendChild(recipe);
+  })
+
+function checking() {
+  // Get the checkbox
+  var checkBox = document.querySelector("#checkbox");
+  // Get the output text
+  var text = document.querySelector("#dairyFree");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked === true){
+    text.style.display = "block";
+ } else {
+    text.style.display = "none";
+ }
+}
+
+})
