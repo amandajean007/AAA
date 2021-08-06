@@ -5,6 +5,8 @@ var formEl = document.querySelector("#food-form");
 var fridge = document.querySelector("#userFridge");
 var allergies = document.querySelector("#allergies");
 var items = [];
+var allergyChoices = [];
+var searchBtn = document.querySelector("#searchBtn")
 
 // Will pull the food items from the fridge
 function renderItems() {
@@ -15,15 +17,15 @@ function renderItems() {
     var item = items[i];
     console.log(item);
     // creates list item and pushes to the dom
-    var li = document.createElement("li");
-    li.textContent = item;
-    li.setAttribute("data-index", i);
+    var ul = document.createElement("ul");
+    ul.textContent = item;
+    ul.setAttribute("data-index", i);
     //creates element to be pushed onto the dom
     var button = document.createElement("button");
     button.textContent = "Remove";
     //appends to go onto dom once created
-    li.appendChild(button);
-    fridge.appendChild(li);
+    ul.appendChild(button);
+    fridge.appendChild(ul);
   }
 }
 
@@ -79,24 +81,22 @@ init();
 
 // start API 
 //add event listen - on search btn 
-searchEl.addEventListener("click", function() {
-var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + fridge + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98'
-//  + '&health=' + allergies;
 
-fetch(foodAPI) 
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data){
-    console.log(data);
-    for (let index = 0; index < array.length; index++) {
-      const element = array[index];
-      
-    }
+searchEl.addEventListener("click", function() {
+    var storedItems = JSON.parse(localStorage.getItem("items"));
+  var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98'
+  //  + '&health=' + allergies;
+  fetch(foodAPI) 
+    .then(response => response.json()) 
+    .then(data => {
+      console.log(data);
+      var recipe = document.createElement('li'); 
+      recipe.textContent = data.hits[recipe];
+      recipeEl.appendChild(recipe);
+    })
+
     checking();
-    var recipe = document.createElement('li'); 
-    recipe.textContent = data.hits[recipe];
-    recipeEl.appendChild(recipe);
+    
   })
 
 function checking() {
@@ -104,12 +104,21 @@ function checking() {
   var checkBox = document.querySelector("#checkbox");
   // Get the output text
   var text = document.querySelector("#dairyFree");
+  for (let index = 0; index < allergyChoices.length; index++) {
+    const element = array[index];
+  }
   // If the checkbox is checked, display the output text
-  if (checkBox.checked === true){
-    text.style.display = "block";
- } else {
-    text.style.display = "none";
- }
+//   if (checkBox.checked === true){
+//     text.style.display = "block";
+//  } else {
+//     text.style.display = "none";
+//  }
 }
 
+fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + 'chicken' + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98')
+.then(function (response) {
+  return response.json();
 })
+console.log();
+
+//on click, box checked add event.target.value to array
