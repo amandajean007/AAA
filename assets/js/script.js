@@ -1,17 +1,12 @@
 const searchEl = document.querySelector("#searchBtn");
-var recipeEl = document.querySelector("#recipe-area");
+var recipeEl = document.querySelector("#recipeContainer");
 var foodInput = document.querySelector("#food-list");
 var formEl = document.querySelector("#food-form");
 var fridge = document.querySelector("#userFridge");
 var allergies = document.querySelector("#allergies");
+var searchBtn = document.querySelector("#searchBtn");
 var items = [];
 var allergyChoices = [];
-var searchBtn = document.querySelector("#searchBtn")
-var dairyFree = document.querySelector('input[id="dairyFree"]');
-var glutenFree = document.querySelector('input[id="glutenFree"]');
-var wheatFree = document.querySelector('input[id="wheatFree"]');
-var eggFree = document.querySelector('input[id="eggFree"]');
-var peanutFree = document.querySelector('input[id="peanutFree"]');
 
 // Will pull the food items from the fridge
 function renderItems() {
@@ -69,20 +64,28 @@ fridge.addEventListener("click", function(event) {
 
 
 // Gets recipe based on userInput 
-var getFoodApi = function() {
+var getFoodApi = function(randomVar) {
     var storedItems = JSON.parse(localStorage.getItem("items"));
   var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98' + allergyChoices
   //  per_page=5
   fetch(foodAPI) 
     .then(response => response.json()) 
     .then(data => {
-      console.log(data);
-
-      var recipe = document.createElement('li'); 
-      recipe.textContent = data.hits[0];
-      recipeEl.appendChild(recipe);
+      console.log(data)
+      displayFood(data, randomVar);
     })
   }
+
+var displayFood = function(recipe, searchedRecipe) {
+  // to have blank area? 
+  recipeEl.textContent = '';
+  // displayRecipe.textContent = searchedRecipe;
+
+  //
+  var recipe0 = document.querySelector('#recipeName0');
+  recipe0.textContent = recipe.hits[0].recipe.label; //finds name 
+  recipeEl.appendChild(recipe0);
+}
 
 formEl.addEventListener("submit", saveAndPush)
 searchBtn.addEventListener("click", getFoodApi);
