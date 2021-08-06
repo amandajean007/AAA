@@ -4,16 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What's in your fridge?</title>
+    <title>Recipies for non-disasters</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <nav></nav>
-    <!-- nav bar -->
+		<!-- Navigation Bar -->
+		<nav class="nav-wrapper green">
+			<div class="container">
+				<a href="#" class="brand-logo">What's In Your Fridge Generator</a>
+				<a href="#" data-target="slide-out" class="sidenav-trigger">
+					<i class="material-icons">menu</i>
+				</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="adventure.html">Adventure Time</a></li>
+				</ul>
+			</div>
+		</nav>
     <!-- h1 -->
     <header>
-        <h1 class="header">What’s In Your Fridge Generator?</h1>
+        <h1 class="header">What’s In Your Fridge?</h1>
     </header>
 <!-- hero banner/picture of food -->
 <section class="hero-banner" title="spread with lots of food"></section>
@@ -24,48 +41,26 @@
             <input type="text"  id="food-list" name="lname" placeholder="Chicken..."><br><br>
             <input type="submit" value="Add" class="glow-on-hover btn" id="addBtn">
         </form>
-        <!-- where selected items will go -->
-        <div id="allergies">
-            <input type="checkbox" id="dairyFree">Dairy Free </input>
-            <input type="checkbox" id="glutenFree">Gluten Free </input>
-            <input type="checkbox" id="wheatFree">Wheat Free </input>
-            <input type="checkbox" id="eggFree">Egg Free </input>
-            <input type="checkbox" id="peanutFree">Peanut Free </input>
-        </div>
         </input>
         <ul id="userFridge"></ul>
         <button class="glow-on-hover btn" id="searchBtn">Search</button>
     </div>
 </div>
-<div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-          </figure>
+    <div class="recipes" id="recipe-container">
+        <div class="row">
+            <div class="col s12 m7">
+              <div class="card col m6">
+                <div class="card-image">
+                  <img src="this.jpg" id="recipeImg" >
+                  <span class="card-title" id="recipeName">Recipe Name Here</span>
+                </div>
+                <div class="card-action"class="col m6">
+                  <a href="#" id="recipeLink" >Recipe and Directions Here</a>
+                </div>
+              </div>
+            </div>
         </div>
-        <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
-        </div>
-      </div>
-  
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-        <a href="#">#css</a> <a href="#">#responsive</a>
-        <br>
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
     </div>
-  </div>
-    <div class="recipes" id="recipe-area"></div>
     <footer>Thanks For Using Our Site! </footer>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
