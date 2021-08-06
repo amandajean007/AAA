@@ -7,6 +7,11 @@ var allergies = document.querySelector("#allergies");
 var items = [];
 var allergyChoices = [];
 var searchBtn = document.querySelector("#searchBtn")
+var dairyFree = document.querySelector('input[id="dairyFree"]');
+var glutenFree = document.querySelector('input[id="glutenFree"]');
+var wheatFree = document.querySelector('input[id="wheatFree"]');
+var eggFree = document.querySelector('input[id="eggFree"]');
+var peanutFree = document.querySelector('input[id="peanutFree"]');
 
 // Will pull the food items from the fridge
 function renderItems() {
@@ -84,7 +89,7 @@ init();
 
 searchEl.addEventListener("click", function() {
     var storedItems = JSON.parse(localStorage.getItem("items"));
-  var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98'
+  var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98' + allergyChoices
   //  + '&health=' + allergies;
   fetch(foodAPI) 
     .then(response => response.json()) 
@@ -94,31 +99,18 @@ searchEl.addEventListener("click", function() {
       recipe.textContent = data.hits[recipe];
       recipeEl.appendChild(recipe);
     })
-
-    checking();
     
   })
 
-function checking() {
-  // Get the checkbox
-  var checkBox = document.querySelector("#checkbox");
-  // Get the output text
-  var text = document.querySelector("#dairyFree");
-  for (let index = 0; index < allergyChoices.length; index++) {
-    const element = array[index];
-  }
-  // If the checkbox is checked, display the output text
-//   if (checkBox.checked === true){
-//     text.style.display = "block";
-//  } else {
-//     text.style.display = "none";
-//  }
-}
-
-fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + 'chicken' + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98')
-.then(function (response) {
-  return response.json();
-})
-console.log();
-
 //on click, box checked add event.target.value to array
+
+
+
+if(dairyFree.checked = true) {
+  console.log("yay");
+} else {
+  console.log("WRONG");
+}
+//per_page=5
+
+
