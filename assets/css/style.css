@@ -106,7 +106,12 @@ footer {
   
   @import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
   
-
+.recipes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
 
 
 

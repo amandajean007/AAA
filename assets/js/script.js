@@ -14,7 +14,7 @@ function renderItems() {
   fridge.innerHTML = ""; 
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
-    console.log(item);
+    //console.log(item);
     var ul = document.createElement("ul");
     ul.textContent = item;
     ul.setAttribute("data-index", i);
@@ -81,30 +81,48 @@ searchBtn.addEventListener("click", function(event) {
 
 
   function show(data) {
+    var recipeArr =[]
+    var hitsArr= data.hits
+
+    for (let i = 0; i < hitsArr.length; i++) {
+      const recipeObj = {
+        label: hitsArr[i].recipe.label,
+        image: hitsArr[i].recipe.image,
+        link: hitsArr[i].recipe.url
+      };
+
+      recipeArr.push(recipeObj)
+      
+    }
+    
+
+    var randomRecipeGen = Math.floor(Math.random() * recipeArr.length)
+    var randomObj = recipeArr[randomRecipeGen];
+
+    
+
+    // title
     var recipeName0 = document.querySelector("#recipeName0");
-    recipeName0.textContent = data.hits[0].recipe.label;
-    recipeName0.classList = "card-title";
-    recipeEl.append(recipeName0);
-
-    var foodImage = data.hits[0].recipe.image;
-    var foodImage = recipeImage.setAttribute ("src", data.hits[0].recipe.image);
+    recipeName0.textContent = randomObj.label;
+    //food image
+    recipeImage.setAttribute ("src", randomObj.image);
     recipeImage.classList = "card-image";
-    recipeEl.append(foodImage);
-
+    // recipe link 
     var recipeLink = document.querySelector("#recipeLink");
-    recipeLink.href = data.hits[0].recipe.url;
-    recipeEl.append(recipeLink);
+    var recipeUrl =recipeLink.href = randomObj.link;
+    recipeLink.textContent = recipeUrl
 
 
 
   };
+
   // fetch API call
   fetch(queryUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+     // console.log(data);
         show(data);
     });
 
