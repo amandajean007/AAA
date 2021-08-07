@@ -7,7 +7,7 @@ var searchBtn = document.querySelector("#searchBtn");
 var items = [];
 var allergyChoices = [];
 var storedItems = JSON.parse(localStorage.getItem("items"));
-var recipeImage = document.querySelector("#recipeImage");
+var recipeImage = document.querySelector("#recipeImg");
 
 // Will pull the food items from the fridge
 function renderItems() {
@@ -85,6 +85,16 @@ searchBtn.addEventListener("click", function(event) {
     recipeName0.textContent = data.hits[0].recipe.label;
     recipeName0.classList = "card-title";
     recipeEl.appendChild(recipeName0);
+
+    /*var foodImage = data.hits[0].recipe.image;*/
+    var foodImage = recipeImage.setAttribute ("src", `hits[0].recipe.image`);
+    recipeImage.classList = "card-image";
+    recipeEl.appendChild(foodImage);
+
+
+
+
+
   };
   // fetch API call
   fetch(queryUrl)
