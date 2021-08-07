@@ -63,14 +63,6 @@ fridge.addEventListener("click", function(event) {
   }
 });
 
-
-
-
-
-
-
-
-
 searchBtn.addEventListener("click", function(event) {
   event.preventDefault();
   // creates a variable to take the city input and add it to the API request
@@ -85,21 +77,18 @@ searchBtn.addEventListener("click", function(event) {
     var hitsArr= data.hits
 
     for (let i = 0; i < hitsArr.length; i++) {
+      //object to be run through 
       const recipeObj = {
         label: hitsArr[i].recipe.label,
         image: hitsArr[i].recipe.image,
         link: hitsArr[i].recipe.url
       };
-
       recipeArr.push(recipeObj)
-      
-    }
     
-
+    }
+    // math floors it to get random object/array
     var randomRecipeGen = Math.floor(Math.random() * recipeArr.length)
     var randomObj = recipeArr[randomRecipeGen];
-
-    
 
     // title
     var recipeName0 = document.querySelector("#recipeName0");
@@ -111,9 +100,6 @@ searchBtn.addEventListener("click", function(event) {
     var recipeLink = document.querySelector("#recipeLink");
     var recipeUrl =recipeLink.href = randomObj.link;
     recipeLink.textContent = recipeUrl
-
-
-
   };
 
   // fetch API call
@@ -122,7 +108,6 @@ searchBtn.addEventListener("click", function(event) {
       return response.json();
     })
     .then(function (data) {
-     // console.log(data);
         show(data);
     });
 
@@ -134,46 +119,5 @@ searchBtn.addEventListener("click", function(event) {
   renderItems();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Gets recipe based on userInput 
-/*var getFoodApi = function(randomVar) {
-    var storedItems = JSON.parse(localStorage.getItem("items"));
-  var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98' + allergyChoices
-  //  per_page=5
-  fetch(foodAPI) 
-    .then(response => response.json()) 
-    .then(data => {
-      console.log(data)
-      displayFood(data, randomVar);
-    })
-  }
-*/
-var displayFood = function(recipe, searchedRecipe) {
-  // to have blank area? 
-  recipeEl.textContent = '';
-  // displayRecipe.textContent = searchedRecipe;
-
-  //
-  var recipe0 = document.querySelector('#recipeName0');
-  recipe0.textContent = recipe.hits[0].recipe.label; //finds name 
-  recipeEl.appendChild(recipe0);
-}
-
 formEl.addEventListener("submit", saveAndPush)
-/*searchBtn.addEventListener("click", getFoodApi);*/
 init();
