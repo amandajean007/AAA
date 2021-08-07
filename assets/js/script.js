@@ -84,14 +84,16 @@ searchBtn.addEventListener("click", function(event) {
     var recipeName0 = document.querySelector("#recipeName0");
     recipeName0.textContent = data.hits[0].recipe.label;
     recipeName0.classList = "card-title";
-    recipeEl.appendChild(recipeName0);
+    recipeEl.append(recipeName0);
 
-    /*var foodImage = data.hits[0].recipe.image;*/
-    var foodImage = recipeImage.setAttribute ("src", `hits[0].recipe.image`);
+    var foodImage = data.hits[0].recipe.image;
+    var foodImage = recipeImage.setAttribute ("src", data.hits[0].recipe.image);
     recipeImage.classList = "card-image";
-    recipeEl.appendChild(foodImage);
+    recipeEl.append(foodImage);
 
-
+    var recipeLink = document.querySelector("#recipeLink");
+    recipeLink.href = data.hits[0].recipe.url;
+    recipeEl.append(recipeLink);
 
 
 
