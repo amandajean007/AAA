@@ -1,4 +1,3 @@
-const searchEl = document.querySelector("#searchBtn");
 var recipeEl = document.querySelector("#recipeContainer");
 var foodInput = document.querySelector("#food-list");
 var formEl = document.querySelector("#food-form");
@@ -7,6 +6,8 @@ var allergies = document.querySelector("#allergies");
 var searchBtn = document.querySelector("#searchBtn");
 var items = [];
 var allergyChoices = [];
+var storedItems = JSON.parse(localStorage.getItem("items"));
+var recipeImage = document.querySelector("#recipeImage");
 
 // Will pull the food items from the fridge
 function renderItems() {
@@ -25,7 +26,7 @@ function renderItems() {
 }
 // Get stored items from local storage
 function init() {
-  var storedItems = JSON.parse(localStorage.getItem("items"));
+  
   if (storedItems !== null) {
     items = storedItems;
   }
@@ -63,8 +64,64 @@ fridge.addEventListener("click", function(event) {
 });
 
 
+
+
+
+
+
+
+
+searchBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  // creates a variable to take the city input and add it to the API request
+  
+
+  // Stores the API call in a variable
+  var queryUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98';
+
+
+  function show(data) {
+    var recipeName0 = document.querySelector("#recipeName0");
+    recipeName0.textContent = data.hits[0].recipe.label;
+    recipeName0.classList = "card-title";
+    recipeEl.appendChild(recipeName0);
+  };
+  // fetch API call
+  fetch(queryUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+        show(data);
+    });
+
+  if (recipeName0 === "") {
+    return;
+  }
+  
+  storeItems();
+  renderItems();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Gets recipe based on userInput 
-var getFoodApi = function(randomVar) {
+/*var getFoodApi = function(randomVar) {
     var storedItems = JSON.parse(localStorage.getItem("items"));
   var foodAPI = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98' + allergyChoices
   //  per_page=5
@@ -75,7 +132,7 @@ var getFoodApi = function(randomVar) {
       displayFood(data, randomVar);
     })
   }
-
+*/
 var displayFood = function(recipe, searchedRecipe) {
   // to have blank area? 
   recipeEl.textContent = '';
@@ -88,6 +145,5 @@ var displayFood = function(recipe, searchedRecipe) {
 }
 
 formEl.addEventListener("submit", saveAndPush)
-searchBtn.addEventListener("click", getFoodApi);
+/*searchBtn.addEventListener("click", getFoodApi);*/
 init();
-
