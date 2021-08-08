@@ -4,14 +4,14 @@ var formEl = document.querySelector("#food-form");
 var fridge = document.querySelector("#userFridge");
 var allergies = document.querySelector("#allergies");
 var searchBtn = document.querySelector("#searchBtn");
-var storedItems = JSON.parse(localStorage.getItem("items"));
-var recipeImage = document.querySelector("#recipeImg");
 var items = [];
 var allergyChoices = [];
+var storedItems = JSON.parse(localStorage.getItem("items"));
+var recipeImage = document.querySelector("#recipeImg");
 
 // Will pull the food items from the fridge
 function renderItems() {
-  fridge.innerHTML = "";
+  fridge.innerHTML = ""; 
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
     //console.log(item);
@@ -26,7 +26,7 @@ function renderItems() {
 }
 // Get stored items from local storage
 function init() {
-
+  
   if (storedItems !== null) {
     items = storedItems;
   }
@@ -38,9 +38,9 @@ function storeItems() {
 }
 
 //creates variable 
-var saveAndPush = function (event) {
+var saveAndPush = function(event) {
   event.preventDefault();
-  var itemText = foodInput.value.trim();
+  var itemText = foodInput.value.trim(); 
   if (itemText === "") {
     return;
   }
@@ -51,7 +51,7 @@ var saveAndPush = function (event) {
 };
 
 // when you click this button, 
-fridge.addEventListener("click", function (event) {
+fridge.addEventListener("click", function(event) {
   var element = event.target;
   // checks if element is a button
   if (element.matches("button") === true) {
@@ -63,21 +63,18 @@ fridge.addEventListener("click", function (event) {
   }
 });
 
-searchBtn.addEventListener("click", function (event) {
+searchBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  // creates a variable to take the city input and add it to the API request
+  
+
+  // Stores the API call in a variable
   var queryUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98';
 
-  // fetch API call
-  fetch(queryUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      show(data);
-    });
 
   function show(data) {
-    var recipeArr = []
-    var hitsArr = data.hits
+    var recipeArr =[]
+    var hitsArr= data.hits
 
     for (let i = 0; i < hitsArr.length; i++) {
       //object to be run through 
@@ -87,23 +84,40 @@ searchBtn.addEventListener("click", function (event) {
         link: hitsArr[i].recipe.url
       };
       recipeArr.push(recipeObj)
-
+    
     }
     // math floors it to get random object/array
     var randomRecipeGen = Math.floor(Math.random() * recipeArr.length)
     var randomObj = recipeArr[randomRecipeGen];
 
     // title
-    var recipeName0 = document.querySelector("#recipeName0");
-    recipeName0.textContent = randomObj.label;
+    
+    ///recipeName0.textContent = randomObj.label;
+    
     //food image
-    recipeImage.setAttribute("src", randomObj.image);
-    recipeImage.classList = "card-image";
+    recipeImage.setAttribute ("src", randomObj.image);
+    recipeImage.classList = "card-action";
     // recipe link 
     var recipeLink = document.querySelector("#recipeLink");
-    recipeLink.href = randomObj.link;
-    // recipeLink.textContent = recipeUrl
+    var recipeUrl =recipeLink.href = randomObj.link;
+    recipeLink.textContent = randomObj.label;
   };
+
+  // fetch API call
+  fetch(queryUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+        show(data);
+    });
+    var recipeName0 = document.querySelector("#recipeLink");
+  if (recipeName0 === "") {
+    return;
+  }
+  
+  storeItems();
+  renderItems();
 });
 
 formEl.addEventListener("submit", saveAndPush)

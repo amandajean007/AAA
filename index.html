@@ -13,56 +13,59 @@
     rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-		<!-- Navigation Bar -->
-		<nav class="nav-wrapper green">
-			<div class="container">
-				<a href="#" class="brand-logo">What's In Your Fridge Generator</a>
-				<a href="#" data-target="slide-out" class="sidenav-trigger">
-					<i class="material-icons">menu</i>
-				</a>
-				<ul class="right hide-on-med-and-down">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="./adventure.html">Adventure Time</a></li>
-				</ul>
-			</div>
-		</nav>
-    <!-- h1 -->
-    <header>
-        <h1 class="header">What’s In Your Fridge?</h1>
-    </header>
-<!-- hero banner/picture of food -->
+<!-- Navigation Bar -->
+<nav class="nav-wrapper green">
+	<div class="container">
+		<a href="#" data-target="slide-out" class="sidenav-trigger">
+			<i class="material-icons">menu</i>
+		</a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="./adventure.html">Adventure Time</a></li>
+		</ul>
+	</div>
+</nav>
+
+<!-- h1 -->
+<header>
+  <h1 class="header">What’s In Your Fridge?</h1>
+</header>
+
+<!-- hero banner/food Search and fridge -->
 <section class="hero-banner" title="spread with lots of food"></section>
 <div class="row"> 
-    <div class="col-6 main-container">
-        <h2>Add food to your fridge!</h2>
-        <form id="food-form" method="POST">
-            <input type="text"  id="food-list" name="lname" placeholder="Chicken..."><br><br>
-            <input type="submit" value="Add" class="glow-on-hover btn" id="addBtn">
-        </form>
-        </input>
-        <ul id="userFridge"></ul>
-        <button class="glow-on-hover btn" id="searchBtn">Search</button>
-    </div>
+  <div class="col-6 main-container">
+    <h2>Add food to your fridge!</h2>
+    <form id="food-form" method="POST">
+      <input type="text"  id="food-list" name="lname" placeholder="Chicken..."><br><br>
+      <button type="submit" value="Add" class="glow-on-hover btn" id="addBtn">Add</button>
+    </form>
+    </input>
+    <ul id="userFridge"></ul>
+    <button class="glow-on-hover btn" id="searchBtn">Search</button>
+  </div>
 </div>
+
 <!-- need to put into fle and align center for image -->
-    <div class="recipes" id="recipeContainer">
-        <div class="row">
-            <div class="col s12 m7">
-              <div class="card">
-                <div class="card-image">
-                  <img id="recipeImg">
-                  <p class="card-title" id="recipeName0">Recipe Name Here</p>
-                </div>
-                <div class="card-action" >
-                  <a target="_blank" href="#" id="recipeLink"> Click Here For More Details!</a>
-                </div>
-              </div>
-            </div>
-        </div>
+<div class="recipes" id="recipeContainer">
+  <div class="row">
+    <div class="col">
+      <div class="card-image">
+        <img id="recipeImg">
+        <p class="card-title" id="recipeImg"></p>
+      </div>
+      <div class="card-action" >
+        <a target="_blank" href="#" id="recipeLink"></a>
+      </div>
     </div>
-    <footer>Thanks For Using Our Site! </footer>
+  </div>
+</div>
+
+<footer>Thanks For Using Our Site! </footer>
+
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <!-- Apply jQuery UI <script> tag here -->
