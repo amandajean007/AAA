@@ -20,7 +20,6 @@ randomize.addEventListener("click", function () {
         //beginning div
         var drinkCard = document.createElement("div");
         drinkCard.classList = "card card-resize"
-
         // img div
         var drinkThumbDiv = document.createElement("div");
         drinkThumbDiv.classList = "card-image waves-effect waves-block waves-light"
@@ -35,13 +34,77 @@ randomize.addEventListener("click", function () {
         //drink name 
         var drinkName = document.createElement("span");
         drinkName.classList = "card-title activator grey-text text-darken-4"
-        //drinkName.href = 
         drinkName.textContent = data.drinks[0].strDrink
+        // recipe reveal stuff 
+        //div for recipe 
+        var recipeReveal = document.createElement("div");
+        recipeReveal.classList = "card-reveal"
+        // recipe reveal stuff 
+        var recipeInfo = document.createElement("span");
+        recipeInfo.classList = "card-title activator grey-text text-darken-4"
+        recipeInfo.textContent = data.drinks[0].strDrink
+        // close symbol
+        var closeRecipe = document.createElement("i");
+        closeRecipe.classList = "material-icons right"
+        closeRecipe.textContent = "close"
+        // recipe 
+        var recipeDetails = document.createElement("div");
+        recipeDetails.classList = "recipe-details"
+        recipeDetails.setAttribute = ("id", data.drinks[0].idDrink);
+        recipeInfo.append(closeRecipe);
+        recipeReveal.append(recipeInfo);
+        recipeReveal.append(recipeDetails);
+
+        drinkCard.append(drinkThumbDiv);
+        drinkCard.append(drinkNameDiv);
+        drinkCard.append(recipeReveal);
+        randomDrink.append(drinkCard);
+        // name of drink        
+        var abv = document.createElement("p");
+        abv.textContent = data.drinks[0].strAlcoholic
+        recipeReveal.append(abv);
+        abv.classList = "abv"; 
+    
+        var measurementDiv = document.createElement("div");
+        measurementDiv.classList = "recipe-measurements"
+        recipeReveal.append(measurementDiv);
+        // div for ingrediants 
+        var ingredientDiv = document.createElement("div");
+        ingredientDiv.classList = "recipe-ingredients"
+        recipeReveal.append(ingredientDiv);
+
+        // arrray for all the ingrediants and measurements 
+        for (var i = 1; i < 16; i++) {
+            var objKeyMeasure = `strMeasure${i}`;
+            
+            if (data.drinks[0][objKeyMeasure]) {
+                var recipeMeasureDisplay = document.createElement("p");
+                recipeMeasureDisplay.textContent = data.drinks[0][objKeyMeasure];
+                measurementDiv.append(recipeMeasureDisplay);
+            }
+        }
+
+        for (var i = 1; i < 16; i++) {
+            var objKeyIngredient = `strIngredient${i}`;
+            
+            if (data.drinks[0][objKeyIngredient]) {
+                var recipeIngredientDisplay = document.createElement("p");
+                recipeIngredientDisplay.textContent = data.drinks[0][objKeyIngredient]
+                ingredientDiv.append(recipeIngredientDisplay);
+            }
+        }
+        // drink instructions 
+        var recipeInstructions =document.createElement("p");
+        recipeInstructions.textContent = data.drinks[0].strInstructions
+        recipeInstructions.classList = "drinkRecipeInstructions"
+        recipeReveal.append(recipeInstructions);
+
         //all the appends
         drinkNameDiv.append(drinkName);
         drinkCard.append(drinkThumbDiv);
         drinkCard.append(drinkNameDiv);
         randomDrink.append(drinkCard);
+
     }
 
     fetch(randomFoodURL)
