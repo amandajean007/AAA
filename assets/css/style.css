@@ -89,17 +89,27 @@ footer {
   top: 0;
   border-radius: 10px;
 }
+
+.container {
+  text-align: end;
+}
 /* for adventure drinks */ 
 .recipe-measurements {
-  float: right;
-  display: inline;
+  display: inline-flex;
+  flex-direction: column;
   width: 50%;
+  /* text-align: end; */
+  /* align-items: flex-end; */
 }
 
 .recipe-ingredients {
-  float: left;
-  display: inline;
+  flex-direction: column;
+  display: inline-flex;
   width: 50%;
+  flex-shrink: 2;
+  text-align: start;
+  /* text-align: end; */
+  /* align-items: flex-start; */
 }
 
 @keyframes glowing {
