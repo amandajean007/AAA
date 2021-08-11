@@ -99,7 +99,7 @@ searchBtn.addEventListener("click", function(event) {
     recipeImage.classList = "card-action";
     // recipe link 
     var recipeLink = document.querySelector("#recipeLink");
-    var recipeUrl =recipeLink.href = randomObj.link;
+    recipeLink.href = randomObj.link;
     recipeLink.textContent = randomObj.label;
   };
 

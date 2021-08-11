@@ -138,6 +138,7 @@ randomize.addEventListener("click", function () {
         foodName.classList = "card-title activator grey-text text-darken-4"
         foodName.textContent = data.meals[0].strMeal
         foodName.href = data.meals[0].strSource
+        foodName.target = "_blank";
         foodNameDiv.append(foodName);
 
         //all the appends 
