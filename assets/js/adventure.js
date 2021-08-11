@@ -59,12 +59,15 @@ randomize.addEventListener("click", function () {
         drinkCard.append(drinkNameDiv);
         drinkCard.append(recipeReveal);
         randomDrink.append(drinkCard);
-        // name of drink        
+
+        // name of drink in card     
         var abv = document.createElement("p");
         abv.textContent = data.drinks[0].strAlcoholic
         recipeReveal.append(abv);
         abv.classList = "abv"; 
-    
+        // list for both 
+
+        // measurments
         var measurementDiv = document.createElement("div");
         measurementDiv.classList = "recipe-measurements"
         recipeReveal.append(measurementDiv);

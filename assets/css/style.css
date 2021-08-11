@@ -89,6 +89,18 @@ footer {
   top: 0;
   border-radius: 10px;
 }
+/* for adventure drinks */ 
+.recipe-measurements {
+  float: right;
+  display: inline;
+  width: 50%;
+}
+
+.recipe-ingredients {
+  float: left;
+  display: inline;
+  width: 50%;
+}
 
 @keyframes glowing {
   0% { background-position: 0 0; }
