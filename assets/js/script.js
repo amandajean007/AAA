@@ -26,7 +26,6 @@ function renderItems() {
 }
 // Get stored items from local storage
 function init() {
-  
   if (storedItems !== null) {
     items = storedItems;
   }
@@ -65,13 +64,8 @@ fridge.addEventListener("click", function(event) {
 
 searchBtn.addEventListener("click", function(event) {
   event.preventDefault();
-  // creates a variable to take the city input and add it to the API request
-  
-
   // Stores the API call in a variable
   var queryUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + storedItems + '&app_id=0bef8d90&app_key=3aa6e2558540ee0b95bb5b427b5c3a98';
-
-
   function show(data) {
     var recipeArr =[]
     var hitsArr= data.hits
@@ -89,11 +83,6 @@ searchBtn.addEventListener("click", function(event) {
     // math floors it to get random object/array
     var randomRecipeGen = Math.floor(Math.random() * recipeArr.length)
     var randomObj = recipeArr[randomRecipeGen];
-
-    // title
-    
-    ///recipeName0.textContent = randomObj.label;
-    
     //food image
     recipeImage.setAttribute ("src", randomObj.image);
     recipeImage.classList = "card-action";
@@ -101,7 +90,7 @@ searchBtn.addEventListener("click", function(event) {
     var recipeLink = document.querySelector("#recipeLink");
     recipeLink.href = randomObj.link;
     recipeLink.textContent = randomObj.label;
-  };
+  }
 
   // fetch API call
   fetch(queryUrl)
@@ -115,7 +104,6 @@ searchBtn.addEventListener("click", function(event) {
   if (recipeName0 === "") {
     return;
   }
-  
   storeItems();
   renderItems();
 });
