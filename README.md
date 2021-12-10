@@ -1,4 +1,4 @@
-# What's in Your Fridge Recipe Generator - Project 1
+# Recipe Generator
 ### What's in your Fridge Recipe Generator
 ### Adventure Time
 
